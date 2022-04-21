@@ -3,26 +3,52 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/MainMenu">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.smproject5.FirstFragment"
+        android:id="@+id/MainMenu"
+        android:name="com.example.smproject5.MainMenu"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        tools:layout="@layout/main_layout">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_to_basket"
+            app:destination="@id/Basket" />
+        <action
+            android:id="@+id/action_to_coffee"
+            app:destination="@id/Coffee" />
+        <action
+            android:id="@+id/action_to_donut"
+            app:destination="@id/Coffee" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.smproject5.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        android:id="@+id/Basket"
+        android:name="com.example.smproject5.Basket"
+        android:label="View Current Order"
+        tools:layout="@layout/basket_layout">
 
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_basket_back"
+            app:destination="@id/MainMenu" />
+    </fragment>
+    <fragment
+        android:id="@+id/Coffee"
+        android:name="com.example.smproject5.OrderCoffee"
+        android:label="Order Coffee"
+        tools:layout="@layout/coffee_layout">
+
+        <action
+            android:id="@+id/action_coffee_back"
+            app:destination="@id/MainMenu" />
+    </fragment>
+    <fragment
+        android:id="@+id/Donut"
+        android:name="com.example.smproject5.OrderDonuts"
+        android:label="Order Donuts"
+        tools:layout="@layout/donut_layout">
+
+        <action
+            android:id="@+id/action_dount_back"
+            app:destination="@id/MainMenu" />
     </fragment>
 </navigation>
