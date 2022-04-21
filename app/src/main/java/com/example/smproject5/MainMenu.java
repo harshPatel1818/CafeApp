@@ -1,5 +1,6 @@
 package com.example.smproject5;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,14 +56,13 @@ public class MainMenu extends Fragment {
             }
         });
 
-        /*
         binding.ordersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(MainMenu.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
+                Intent intent = new Intent(getContext(), ViewStoreOrders.class);
+                startActivity(intent);
             }
-        }); */
+        });
     }
 
     @Override
