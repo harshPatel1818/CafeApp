@@ -11,7 +11,10 @@ public class MenuItem
     public double itemPrice() {
         return price;
     }
-
+    public String unitPrice()
+    {
+        return ""+price;
+    }
     /**
      * Returns a string representation of the item.
      */
@@ -20,3 +23,5 @@ public class MenuItem
         return "Menu Item";
     }
 }
+
+
