@@ -18,10 +18,15 @@ import com.example.smproject5.databinding.ActivityMainBinding;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
+
+    private Order order;
+    public StoreOrders storeOrders;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        order = new Order();
+        storeOrders = new StoreOrders();
     }
 
     @Override
@@ -72,5 +80,24 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public void addCoffee(Coffee coffee, int amount) {
+        for(int i = 0; i < amount; i++) {
+            order.add(coffee);
+        }
+    }
+
+    public ArrayList<String> getList() {
+        ArrayList<com.example.smproject5.MenuItem> itemList = order.getList();
+        ArrayList<String> realList = new ArrayList<>();
+        for(com.example.smproject5.MenuItem item : itemList) {
+            realList.add(item.toString());
+        }
+        return realList;
+    }
+
+    public Order getOrder() {
+        return order;
     }
 }

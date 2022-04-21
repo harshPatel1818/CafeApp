@@ -12,11 +12,13 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.smproject5.databinding.MainLayoutBinding;
 
+/**
+ * Controls all the functions of the Coffee ordering window.
+ * @author Aaron Browne, Harshkumar Patel
+ */
 public class MainMenu extends Fragment {
 
     private MainLayoutBinding binding;
-    private Order order;
-    public StoreOrders storeOrders;
 
     @Override
     public View onCreateView(

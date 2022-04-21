@@ -12,6 +12,10 @@
 
     <string name="add_to_order">Add to Order</string>
 
+    <string name="add_success">Item(s) Successfully Added to your Order!</string>
+
+    <string name="place">Place this Order</string>
+
     <string name="coffee_fragment_label">Order Coffee</string>
     <string name="donut_fragment_label">Order Donuts</string>
     <string name="basket_fragment_label">Current Order</string>
