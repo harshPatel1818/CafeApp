@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/MainMenu"
         android:name="com.example.smproject5.MainMenu"
-        android:label="@string/first_fragment_label"
+        android:label="@string/main_fragment_label"
         tools:layout="@layout/main_layout">
 
         <action
@@ -24,31 +24,19 @@
     <fragment
         android:id="@+id/Basket"
         android:name="com.example.smproject5.Basket"
-        android:label="View Current Order"
+        android:label="@string/basket_fragment_label"
         tools:layout="@layout/basket_layout">
-
-        <action
-            android:id="@+id/action_basket_back"
-            app:destination="@id/MainMenu" />
     </fragment>
     <fragment
         android:id="@+id/Coffee"
         android:name="com.example.smproject5.OrderCoffee"
-        android:label="Order Coffee"
+        android:label="@string/coffee_fragment_label"
         tools:layout="@layout/coffee_layout">
-
-        <action
-            android:id="@+id/action_coffee_back"
-            app:destination="@id/MainMenu" />
     </fragment>
     <fragment
         android:id="@+id/Donut"
         android:name="com.example.smproject5.OrderDonuts"
-        android:label="Order Donuts"
+        android:label="@string/donut_fragment_label"
         tools:layout="@layout/donut_layout">
-
-        <action
-            android:id="@+id/action_dount_back"
-            app:destination="@id/MainMenu" />
     </fragment>
 </navigation>

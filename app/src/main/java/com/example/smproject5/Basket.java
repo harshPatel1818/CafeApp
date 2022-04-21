@@ -29,13 +29,14 @@ public class Basket extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        /*
         binding.buttonSecond.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(Basket.this)
                         .navigate(R.id.action_basket_back);
             }
-        });
+        });*/
     }
 
     @Override
