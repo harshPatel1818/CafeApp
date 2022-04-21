@@ -11,13 +11,6 @@
         android:layout_height="wrap_content"
         android:theme="@style/Theme.SmProject5.AppBarOverlay">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/Theme.SmProject5.PopupOverlay" />
-
     </com.google.android.material.appbar.AppBarLayout>
 
     <include layout="@layout/content_main" />
@@ -30,5 +23,21 @@
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="16dp"
         app:srcCompat="@android:drawable/ic_dialog_email" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rotationX="0"
+        android:rotationY="0"
+        android:text="@string/donuts" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:buttonGravity="center_vertical"
+        app:popupTheme="@style/Theme.SmProject5.PopupOverlay" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
