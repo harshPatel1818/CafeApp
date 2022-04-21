@@ -10,13 +10,15 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
+    <string name="add_to_order">Add to Order</string>
+
     <string name="coffee_fragment_label">Order Coffee</string>
     <string name="donut_fragment_label">Order Donuts</string>
     <string name="basket_fragment_label">Current Order</string>
     <string name="orders_fragment_label">Store Orders</string>
     <string name="main_fragment_label">Welcome to Rutgers Cafe!</string>
 
-    <string name="cream">Whipped Cream</string>
+    <string name="cream">Cream</string>
     <string name="milk">Milk</string>
     <string name="syrup">Syrup</string>
     <string name="caramel">Caramel</string>

@@ -19,7 +19,7 @@
             app:destination="@id/Coffee" />
         <action
             android:id="@+id/action_to_donut"
-            app:destination="@id/Coffee" />
+            app:destination="@id/Donut" />
     </fragment>
     <fragment
         android:id="@+id/Basket"

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">RecyclerView Sample Code</string>
+    <string-array name="itemNames">
+        <item>Apple</item>
+        <item>Banana</item>
+        <item>Grape</item>
+        <item>Mango</item>
+        <item>Orange</item>
+        <item>Peach</item>
+        <item>Pineapple</item>
+        <item>Strawberry</item>
+    </string-array>
+</resources>

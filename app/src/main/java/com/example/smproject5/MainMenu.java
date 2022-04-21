@@ -14,6 +14,8 @@ import com.example.smproject5.databinding.MainLayoutBinding;
 public class MainMenu extends Fragment {
 
     private MainLayoutBinding binding;
+    private Order order;
+    public StoreOrders storeOrders;
 
     @Override
     public View onCreateView(
