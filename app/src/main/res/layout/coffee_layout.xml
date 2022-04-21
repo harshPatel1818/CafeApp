@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <CheckBox
+        android:id="@+id/creamButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cream"
+        tools:layout_editor_absoluteX="46dp"
+        tools:layout_editor_absoluteY="309dp" />
+
+    <CheckBox
+        android:id="@+id/syrupButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/syrup"
+        tools:layout_editor_absoluteX="207dp"
+        tools:layout_editor_absoluteY="309dp" />
+
+    <CheckBox
+        android:id="@+id/milkButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/milk"
+        tools:layout_editor_absoluteX="298dp"
+        tools:layout_editor_absoluteY="309dp" />
+
+    <CheckBox
+        android:id="@+id/caramelButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/caramel"
+        tools:layout_editor_absoluteX="56dp"
+        tools:layout_editor_absoluteY="395dp" />
+
+    <CheckBox
+        android:id="@+id/whippedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/whipped_cream"
+        tools:layout_editor_absoluteX="191dp"
+        tools:layout_editor_absoluteY="395dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
