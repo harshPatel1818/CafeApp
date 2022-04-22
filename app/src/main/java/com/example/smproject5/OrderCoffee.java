@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.Toast;
@@ -16,6 +17,8 @@ import com.example.smproject5.databinding.CoffeeLayoutBinding;
 import com.example.smproject5.databinding.MainLayoutBinding;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Controls all the functions of the Coffee ordering window.
@@ -28,6 +31,11 @@ public class OrderCoffee extends Fragment {
     private Coffee coffee;
     int amount;
 
+    private final int SHORT  = 1;
+    private final int TALL   = 2;
+    private final int GRANDE = 3;
+    private final int VENTI  = 4;
+
     /**
      * Sets up the layout binding object.
      * @param inflater The inflater.
@@ -37,7 +45,7 @@ public class OrderCoffee extends Fragment {
      */
     @Override
     public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
+            @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
 
@@ -61,53 +69,50 @@ public class OrderCoffee extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.sizeBox.setAdapter(adapter);
 
+        ArrayList<Integer> numbers = new ArrayList<Integer>();
+        numbers.add(1);
+        numbers.add(2);
+        numbers.add(3);
+        numbers.add(4);
+        numbers.add(5);
+
+        ArrayAdapter<Integer> ad = new ArrayAdapter(getContext(),
+                android.R.layout.simple_spinner_item, numbers);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        binding.quantityBox.setAdapter(ad);
+
         binding.creamButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean checked = ((CheckBox) view).isChecked();
-                if(checked) coffee.add(Topping.CREAM);
-                else coffee.remove(Topping.CREAM);
-                updatePrice();
+                boxChecked(Topping.CREAM, ((CheckBox) view).isChecked());
             }
         });
 
         binding.milkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean checked = ((CheckBox) view).isChecked();
-                if(checked) coffee.add(Topping.MILK);
-                else coffee.remove(Topping.MILK);
-                updatePrice();
+                boxChecked(Topping.MILK, ((CheckBox) view).isChecked());
             }
         });
 
         binding.caramelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean checked = ((CheckBox) view).isChecked();
-                if(checked) coffee.add(Topping.CARAMEL);
-                else coffee.remove(Topping.CARAMEL);
-                updatePrice();
+                boxChecked(Topping.CARAMEL, ((CheckBox) view).isChecked());
             }
         });
 
         binding.syrupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean checked = ((CheckBox) view).isChecked();
-                if(checked) coffee.add(Topping.SYRUP);
-                else coffee.remove(Topping.SYRUP);
-                updatePrice();
+                boxChecked(Topping.SYRUP, ((CheckBox) view).isChecked());
             }
         });
 
         binding.whippedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean checked = ((CheckBox) view).isChecked();
-                if(checked) coffee.add(Topping.WHIPPED_CREAM);
-                else coffee.remove(Topping.WHIPPED_CREAM);
-                updatePrice();
+                boxChecked(Topping.WHIPPED_CREAM, ((CheckBox) view).isChecked());
             }
         });
 
@@ -116,9 +121,77 @@ public class OrderCoffee extends Fragment {
             public void onClick(View view) {
                 MainActivity mm = (MainActivity) getActivity();
                 mm.addCoffee(coffee, amount);
-                Toast.makeText(getContext(), "@string/add_success", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.add_success, Toast.LENGTH_LONG).show();
             }
         });
+
+        binding.sizeBox.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int pos, long id) {
+                sizeChange((String) parent.getItemAtPosition(pos));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Another interface callback
+            }
+        });
+
+        binding.quantityBox.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int pos, long id) {
+                quantityChanged((int) parent.getItemAtPosition(pos));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Another interface callback
+            }
+        });
+    }
+
+    /**
+     * Adds or removes a tooping from the coffee when a checkbox is checked or unchecked.
+     * @param t The topping to add/remove.
+     * @param checked Whether the box is checked or not.
+     */
+    private void boxChecked(Topping t, boolean checked) {
+        if(checked) coffee.add(t);
+        else coffee.remove(t);
+        updatePrice();
+    }
+
+    /**
+     * Updates the quantity variable when the user changes the quantity in the GUI.
+     */
+    public void quantityChanged(int newQuantity) {
+        amount = newQuantity;
+        updatePrice();
+    }
+
+    /**
+     * Updates the current coffee object when the size of the coffee is changed.
+     */
+    private void sizeChange(String newSize) {
+        int newSizeNumber = 0;
+        switch(newSize) {
+            case "Short":
+                newSizeNumber = SHORT;
+                break;
+            case "Tall":
+                newSizeNumber = TALL;
+                break;
+            case "Grande":
+                newSizeNumber = GRANDE;
+                break;
+            case "Venti":
+                newSizeNumber = VENTI;
+        }
+
+        coffee.changeSize(newSizeNumber);
+        updatePrice();
     }
 
     /**
