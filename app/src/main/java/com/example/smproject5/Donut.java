@@ -30,7 +30,7 @@ public class Donut extends MenuItem
      * @param f The flavor
      * @param q The quantity
      */
-    public Donut(String t, String f, int q, String name) {
+    public Donut(String t, String f, int q) {
         this.type = t;
         this.quantity = q;
         this.flavor = f;
