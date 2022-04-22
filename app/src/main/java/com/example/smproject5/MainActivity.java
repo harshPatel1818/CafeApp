@@ -88,6 +88,20 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void addDonut(Donut donut) {
+        boolean added = false;
+        for(com.example.smproject5.MenuItem i : order.getList()) {
+            try {
+                Donut d = (Donut) i;
+                if(donut.equals(d)) {
+                    d.addDonuts(donut);
+                    added = true;
+                }
+            } catch(Exception e) {}
+        }
+        if(!added) order.add(donut);
+    }
+
     public ArrayList<String> getList() {
         ArrayList<com.example.smproject5.MenuItem> itemList = order.getList();
         ArrayList<String> realList = new ArrayList<>();

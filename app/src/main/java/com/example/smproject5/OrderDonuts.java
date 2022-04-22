@@ -61,5 +61,8 @@ public class OrderDonuts extends Fragment {
         donutList.add(new Donut("Cake Donut","ChoCcsco ",1));
     }
 
-    public void addDonut(Donut d) {}
+    public void addDonut(Donut d) {
+        MainActivity main = (MainActivity) getActivity();
+        main.addDonut(d);
+    }
 }

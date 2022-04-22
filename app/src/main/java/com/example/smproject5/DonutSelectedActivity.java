@@ -13,8 +13,8 @@ public class DonutSelectedActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_item_selected);
-        button = findViewById(R.id.btn1);
+        //setContentView(R.layout.activity_item_selected);
+        //button = findViewById(R.id.btn1);
         Intent intent = getIntent();
         button.setText(intent.getStringExtra("ITEM"));
     }

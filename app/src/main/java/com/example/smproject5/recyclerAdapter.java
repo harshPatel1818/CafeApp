@@ -41,6 +41,18 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.donutH
         holder.price.setText(price);
     }
 
+    private void addDonut(String donutName) {
+        String[] nameWords = donutName.split(" ");
+        int n = nameWords.length;
+        String flavorName = nameWords[0];
+        String typeName = nameWords[n-2] + " " + nameWords[n-1];
+        for(int i = 1; i < n-2; i++) {
+            flavorName += " " + nameWords[i];
+        }
+        Donut newDonut = new Donut(typeName, flavorName, 1);
+        od.addDonut(newDonut);
+    }
+
     @Override
     public int getItemCount() {
         return donutList.size();
@@ -74,12 +86,6 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.donutH
             }); */
         }
 
-        private void addDonut(String donutName) {
-            for(Donut e : donutList) {
-                skdjsk
-            }
-        }
-
         /**
          * Set the onClickListener for the button on each row.
          * Clicking on the button will create an AlertDialog with the options of YES/NO.
@@ -95,7 +101,7 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.donutH
                     //handle the "YES" click
                     alert.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-
+                            addDonut(name.getText().toString());
                             Toast.makeText(itemView.getContext(),
                                     name.getText().toString() + " added.", Toast.LENGTH_LONG).show();
                         }
