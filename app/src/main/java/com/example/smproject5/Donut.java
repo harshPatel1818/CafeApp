@@ -9,7 +9,6 @@ public class Donut extends MenuItem
     private final double CAKE_DONUT_PRICE = 1.79;
     private final double DONUT_HOLE_PRICE = 0.39;
 
-    private int quantity;
     private String type;
     private String flavor;
 
@@ -35,11 +34,11 @@ public class Donut extends MenuItem
         this.quantity = q;
         this.flavor = f;
         if(type.equals("Yeast Donut")) {
-            price = YEAST_DONUT_PRICE * quantity;
+            price = YEAST_DONUT_PRICE;
         } else if(type.equals("Cake Donut")) {
-            price = CAKE_DONUT_PRICE * quantity;
+            price = CAKE_DONUT_PRICE;
         } else {
-            price = DONUT_HOLE_PRICE * quantity;
+            price = DONUT_HOLE_PRICE;
         }
     }
 
@@ -52,11 +51,11 @@ public class Donut extends MenuItem
             quantity += d.getQuantity();
         }
         if(type.equals("Yeast Donut")) {
-            price = YEAST_DONUT_PRICE * quantity;
+            price = YEAST_DONUT_PRICE;
         } else if(type.equals("Cake Donut")) {
-            price = CAKE_DONUT_PRICE * quantity;
+            price = CAKE_DONUT_PRICE;
         } else {
-            price = DONUT_HOLE_PRICE * quantity;
+            price = DONUT_HOLE_PRICE;
         }
     }
 
@@ -74,14 +73,6 @@ public class Donut extends MenuItem
      */
     public String getFlavor() {
         return flavor;
-    }
-
-    /**
-     * Returns the quantity of donuts.
-     * @return The quantity of donuts.
-     */
-    public int getQuantity() {
-        return quantity;
     }
 
     /**

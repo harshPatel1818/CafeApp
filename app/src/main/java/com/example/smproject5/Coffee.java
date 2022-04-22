@@ -28,6 +28,7 @@ public class Coffee extends MenuItem implements Customizable {
 		this.size = SHORT;
 		this.price = DEFAULT_COST;
 		this.addons = new HashSet<Topping>();
+		this.quantity = 1;
 	}
 
 	/**
@@ -51,6 +52,15 @@ public class Coffee extends MenuItem implements Customizable {
 	}
 
 	/**
+	 * Adds another coffee's quantity to the current one if they have the same size and addons.
+	 * @param c The other coffee.
+	 */
+	public void addCoffee(Coffee c) {
+		if(equals(c)) quantity += c.getQuantity();
+		updatePrice();
+	}
+
+	/**
 	 * Changes the size of the coffee.
 	 * @param newSize The new size of the coffee.
 	 */
@@ -67,7 +77,37 @@ public class Coffee extends MenuItem implements Customizable {
 		double newPrice = DEFAULT_COST;
 		newPrice += (size - SHORT) * INCREASE_PER_SIZE;
 		newPrice += addons.size() * INCREASE_PER_ADDON;
-		price = newPrice;
+		price = newPrice * quantity;
+	}
+
+	/**
+	 * Returns the size of the coffee.
+	 * @return The size of the coffee.
+	 */
+	public int getSize() { return size; }
+
+	/**
+	 * Sets the amount of coffees when the user picks a different option from the drop down menu.
+	 * @param newQuantity The new amount of coffees.
+	 */
+	public void setQuantity(int newQuantity) {
+		quantity = newQuantity;
+	}
+
+	/**
+	 * Returns the addons of the coffee as a set.
+	 * @return The addons of the coffee.
+	 */
+	public Set<Topping> getAddons() { return addons; }
+
+	/**
+	 * Determines if two coffee objects are equal,
+	 * that is if they are the same size and if they have the same toppings
+	 * @param c The coffe to compare against.
+	 * @return True if the coffees are equal, false otherwise.
+	 */
+	public boolean equals(Coffee c) {
+		return size == c.getSize() && addons.equals(c.getAddons());
 	}
 
 	/**
@@ -95,7 +135,10 @@ public class Coffee extends MenuItem implements Customizable {
 		for(Topping i : addons) {
 			result += i + ", ";
 		}
-		result += "]";
+
+		if(addons.isEmpty()) result += "black";
+
+		result += "] (" + quantity + ")";
 		return result;
 	}
 }

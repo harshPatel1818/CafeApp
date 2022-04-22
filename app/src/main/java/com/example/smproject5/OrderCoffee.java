@@ -25,11 +25,8 @@ import java.util.Collections;
  * @author Aaron Browne, Harshkumar Patel
  */
 public class OrderCoffee extends Fragment {
-    //TODO: Be able to change the size of coffees
-    //TODO: Be able to change the amount of coffees
     private CoffeeLayoutBinding binding;
     private Coffee coffee;
-    int amount;
 
     private final int SHORT  = 1;
     private final int TALL   = 2;
@@ -61,7 +58,6 @@ public class OrderCoffee extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         coffee = new Coffee();
-        amount = 1;
         updatePrice();
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
@@ -120,8 +116,9 @@ public class OrderCoffee extends Fragment {
             @Override
             public void onClick(View view) {
                 MainActivity mm = (MainActivity) getActivity();
-                mm.addCoffee(coffee, amount);
-                Toast.makeText(getContext(), R.string.add_success, Toast.LENGTH_LONG).show();
+                mm.addCoffee(coffee);
+                Toast.makeText(getContext(), R.string.add_success,
+                        Toast.LENGTH_LONG).show();
             }
         });
 
@@ -134,7 +131,6 @@ public class OrderCoffee extends Fragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                // Another interface callback
             }
         });
 
@@ -147,13 +143,12 @@ public class OrderCoffee extends Fragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                // Another interface callback
             }
         });
     }
 
     /**
-     * Adds or removes a tooping from the coffee when a checkbox is checked or unchecked.
+     * Adds or removes a topping from the coffee when a checkbox is checked or unchecked.
      * @param t The topping to add/remove.
      * @param checked Whether the box is checked or not.
      */
@@ -167,14 +162,14 @@ public class OrderCoffee extends Fragment {
      * Updates the quantity variable when the user changes the quantity in the GUI.
      */
     public void quantityChanged(int newQuantity) {
-        amount = newQuantity;
+        coffee.setQuantity(newQuantity);
         updatePrice();
     }
 
     /**
      * Updates the current coffee object when the size of the coffee is changed.
      */
-    private void sizeChange(String newSize) {
+    private void sizeChange(@NonNull String newSize) {
         int newSizeNumber = 0;
         switch(newSize) {
             case "Short":
@@ -199,7 +194,7 @@ public class OrderCoffee extends Fragment {
      */
     private void updatePrice() {
         DecimalFormat df = new DecimalFormat("###,##0.00");
-        binding.priceText.setText(df.format(coffee.itemPrice() * amount));
+        binding.priceText.setText(df.format(coffee.itemPrice()));
     }
 
     /**

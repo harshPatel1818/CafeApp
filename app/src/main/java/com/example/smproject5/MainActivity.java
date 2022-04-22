@@ -20,6 +20,7 @@ import android.view.MenuItem;
 
 import java.util.ArrayList;
 
+//TODO: Get Rid of all the import statements we don't use
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
@@ -37,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(binding.toolbar);
 
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        NavController navController = Navigation.findNavController(this,
+                R.id.nav_host_fragment_content_main);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
@@ -77,15 +79,24 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        NavController navController = Navigation.findNavController(this,
+                R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
     }
 
-    public void addCoffee(Coffee coffee, int amount) {
-        for(int i = 0; i < amount; i++) {
-            order.add(coffee);
+    public void addCoffee(Coffee coffee) {
+        boolean added = false;
+        for(com.example.smproject5.MenuItem i : order.getList()) {
+            try {
+                Coffee c = (Coffee) i;
+                if(coffee.equals(c)) {
+                    c.addCoffee(coffee);
+                    added = true;
+                }
+            } catch(Exception e) {}
         }
+        if(!added) order.add(coffee);
     }
 
     public void addDonut(Donut donut) {
