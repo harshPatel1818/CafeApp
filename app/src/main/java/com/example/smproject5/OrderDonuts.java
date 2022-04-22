@@ -1,24 +1,19 @@
 package com.example.smproject5;
 
-import android.content.ClipData;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.smproject5.databinding.CoffeeLayoutBinding;
 import com.example.smproject5.databinding.DonutLayoutBinding;
 
 public class OrderDonuts extends Fragment {
@@ -46,14 +41,14 @@ public class OrderDonuts extends Fragment {
     }
 
     private void setAdapter() {
-        recyclerAdapter adapter = new recyclerAdapter(donutList);
+        recyclerAdapter adapter = new recyclerAdapter(donutList, this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
     }
 
-    public void setDonut()
+    private void setDonut()
     {
         donutList.add(new Donut("Cake Donut","Glazed ",1));
         donutList.add(new Donut("Donut Hole","Glazed ",1));
@@ -64,6 +59,7 @@ public class OrderDonuts extends Fragment {
         donutList.add(new Donut("Cake Donut","Choco ",1));
         donutList.add(new Donut("Cake Donut","SS ",1));
         donutList.add(new Donut("Cake Donut","ChoCcsco ",1));
-
     }
+
+    public void addDonut(Donut d) {}
 }
