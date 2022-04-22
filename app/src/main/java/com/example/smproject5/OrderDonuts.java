@@ -53,13 +53,15 @@ public class OrderDonuts extends Fragment {
 
     public void setDonut()
     {
-        donutList.add(new Donut("Cake Donut","Choco",1));
-        donutList.add(new Donut("Cake Donut","Strw",2));
-        donutList.add(new Donut("Cake Donut","Choco",3));
-        donutList.add(new Donut("Cake Donut","Straw",4));
-        donutList.add(new Donut("Cake Donut","Choco",5));
-        donutList.add(new Donut("Cake Donut","SS",6));
-        donutList.add(new Donut("Cake Donut","ChoCcsco",7));
+        donutList.add(new Donut("Cake Donut","Glazed ",1));
+        donutList.add(new Donut("Donut Hole","Glazed ",1));
+        donutList.add(new Donut("Yeast Donut","Glazed ",1));
+        donutList.add(new Donut("Yeast Donut","Boston Cream ",1));
+        donutList.add(new Donut("Donut Hole","Sprinkled ",1));
+        donutList.add(new Donut("Cake Donut","Straw ",1));
+        donutList.add(new Donut("Cake Donut","Choco ",1));
+        donutList.add(new Donut("Cake Donut","SS ",1));
+        donutList.add(new Donut("Cake Donut","ChoCcsco ",1));
 
     }
 }

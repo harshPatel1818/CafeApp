@@ -1,5 +1,8 @@
 package com.example.smproject5;
 
+import java.io.BufferedReader;
+import java.io.File;
+
 public class Donut extends MenuItem
 {
     private final double YEAST_DONUT_PRICE = 1.59;
@@ -9,6 +12,7 @@ public class Donut extends MenuItem
     private int quantity;
     private String type;
     private String flavor;
+
 
     /**
      * Sets default values for the donut when none are provided.
@@ -26,7 +30,7 @@ public class Donut extends MenuItem
      * @param f The flavor
      * @param q The quantity
      */
-    public Donut(String t, String f, int q) {
+    public Donut(String t, String f, int q, String name) {
         this.type = t;
         this.quantity = q;
         this.flavor = f;
@@ -96,5 +100,9 @@ public class Donut extends MenuItem
      */
     public boolean equals(Donut d) {
         return this.type.equals(d.getType()) && this.flavor.equals(d.getFlavor());
+    }
+
+    public double getPrice() {
+        return price;
     }
 }
