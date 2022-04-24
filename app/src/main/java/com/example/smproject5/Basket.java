@@ -9,15 +9,18 @@ import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.smproject5.databinding.BasketLayoutBinding;
 
 import java.text.DecimalFormat;
 
+//TODO: Write comments for this class
+//TODO: Be able to delete an item from the order
+//TODO: Display error message when adding empty order
 public class Basket extends Fragment {
 
     private BasketLayoutBinding binding;
+    MainActivity ma;
 
     @Override
     public View onCreateView(
@@ -34,27 +37,30 @@ public class Basket extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         populateList();
 
-        /*
-        binding.buttonSecond.setOnClickListener(new View.OnClickListener() {
+        binding.placeOrderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(Basket.this)
-                        .navigate(R.id.action_basket_back);
+                placeOrder();
             }
-        });*/
+        });
     }
 
     private void populateList() {
-        MainActivity ma = (MainActivity) getActivity();
+        ma = (MainActivity) getActivity();
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),R.layout.listview_template, ma.getList());
         ListView listView = binding.orderList;
         listView.setAdapter(adapter);
 
-        DecimalFormat df = new DecimalFormat("###,##0.00");
+        DecimalFormat df = new DecimalFormat("$ ###,##0.00");
         Order o = ma.getOrder();
         binding.subtotal.setText(df.format(o.orderPrice()));
         binding.tax.setText(df.format(o.getTax()));
         binding.total.setText(df.format(o.getTotal()));
+    }
+
+    private void placeOrder() {
+        ma.placeOrder();
+        populateList();
     }
 
     @Override

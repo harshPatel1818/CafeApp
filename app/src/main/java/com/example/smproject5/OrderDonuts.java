@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smproject5.databinding.DonutLayoutBinding;
 
+//TODO: Write comments for this class
 public class OrderDonuts extends Fragment {
     private ArrayList<Donut> donutList;
     private RecyclerView recyclerView;
@@ -41,7 +42,7 @@ public class OrderDonuts extends Fragment {
     }
 
     private void setAdapter() {
-        recyclerAdapter adapter = new recyclerAdapter(donutList, this);
+        RecyclerAdapter adapter = new RecyclerAdapter(donutList, this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

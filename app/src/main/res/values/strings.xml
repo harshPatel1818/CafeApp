@@ -2,17 +2,12 @@
     <string name="app_name">smProject5</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
     <string name="add_to_order">Add to Order</string>
 
     <string name="add_success">Item(s) Successfully Added to your Order!</string>
+    <string name="empty_order_warning">Order Cannot Be Empty!</string>
+    <string name="order_success">Successfully Placed Order!</string>
 
     <string name="place">Place this Order</string>
 
@@ -27,4 +22,8 @@
     <string name="syrup">Syrup</string>
     <string name="caramel">Caramel</string>
     <string name="whipped_cream">Whipped Cream</string>
+
+    <string name="sub_label">Subtotal:</string>
+    <string name="tax_label">Tax:</string>
+    <string name="total_label">Total:</string>
 </resources>

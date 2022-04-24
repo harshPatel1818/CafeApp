@@ -1,8 +1,9 @@
 package com.example.smproject5;
 
-import java.io.BufferedReader;
-import java.io.File;
-
+/**
+ * Contains information about a single donut.
+ * @author Harshkumar Patel
+ */
 public class Donut extends MenuItem
 {
     private final double YEAST_DONUT_PRICE = 1.59;
@@ -11,17 +12,6 @@ public class Donut extends MenuItem
 
     private String type;
     private String flavor;
-
-
-    /**
-     * Sets default values for the donut when none are provided.
-     */
-    public Donut() {
-        this.type = "Yeast Donut";
-        this.flavor = "Glazed";
-        super.price = YEAST_DONUT_PRICE;
-        this.quantity = 1;
-    }
 
     /**
      * Creates a donut with the values given.
@@ -91,9 +81,5 @@ public class Donut extends MenuItem
      */
     public boolean equals(Donut d) {
         return this.type.equals(d.getType()) && this.flavor.equals(d.getFlavor());
-    }
-
-    public double getPrice() {
-        return price;
     }
 }

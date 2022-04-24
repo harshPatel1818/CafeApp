@@ -2,11 +2,7 @@ package com.example.smproject5;
 
 import android.os.Bundle;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.view.View;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -20,7 +16,11 @@ import android.view.MenuItem;
 
 import java.util.ArrayList;
 
-//TODO: Get Rid of all the import statements we don't use
+/**
+ * Controls the functions of the main activity.
+ * This includes the main screen, the screens to order Donut and Coffee, and the current order screen.
+ * @author Aaron Browne, Harshkumar Patel
+ */
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
@@ -29,6 +29,10 @@ public class MainActivity extends AppCompatActivity {
     private Order order;
     public StoreOrders storeOrders;
 
+    /**
+     * Sets up the activity when it is created.
+     * @param savedInstanceState The saved instance state.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,18 +47,15 @@ public class MainActivity extends AppCompatActivity {
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
-        binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         order = new Order();
         storeOrders = new StoreOrders();
     }
 
+    /**
+     * Inflates the menu inflater and returns true.
+     * @param menu The menu to inflate.
+     * @return true
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -62,6 +63,11 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Handles when an options item is selected.
+     * @param item A menu item.
+     * @return Whether or not it was a success.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -77,6 +83,10 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Supports the program when a user navigates up.
+     * @return Whether or not it was a success.
+     */
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this,
@@ -85,6 +95,10 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
+    /**
+     * Adds a coffee to the current order.
+     * @param coffee The coffee to add.
+     */
     public void addCoffee(Coffee coffee) {
         boolean added = false;
         for(com.example.smproject5.MenuItem i : order.getList()) {
@@ -92,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
                 Coffee c = (Coffee) i;
                 if(coffee.equals(c)) {
                     c.addCoffee(coffee);
+                    order.updatePrice();
                     added = true;
                 }
             } catch(Exception e) {}
@@ -99,6 +114,10 @@ public class MainActivity extends AppCompatActivity {
         if(!added) order.add(coffee);
     }
 
+    /**
+     * Add a donut to the current order.
+     * @param donut The donut to add.
+     */
     public void addDonut(Donut donut) {
         boolean added = false;
         for(com.example.smproject5.MenuItem i : order.getList()) {
@@ -106,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
                 Donut d = (Donut) i;
                 if(donut.equals(d)) {
                     d.addDonuts(donut);
+                    order.updatePrice();
                     added = true;
                 }
             } catch(Exception e) {}
@@ -113,6 +133,10 @@ public class MainActivity extends AppCompatActivity {
         if(!added) order.add(donut);
     }
 
+    /**
+     * Returns the list of orders as a list of strings.
+     * @return The list of strings.
+     */
     public ArrayList<String> getList() {
         ArrayList<com.example.smproject5.MenuItem> itemList = order.getList();
         ArrayList<String> realList = new ArrayList<>();
@@ -122,7 +146,19 @@ public class MainActivity extends AppCompatActivity {
         return realList;
     }
 
+    /**
+     * Returns the order object.
+     * @return The order object.
+     */
     public Order getOrder() {
         return order;
+    }
+
+    /**
+     * Adds the current to the list of store order when the user presses the place order button.
+     */
+    public void placeOrder() {
+        storeOrders.add(order);
+        order = new Order();
     }
 }

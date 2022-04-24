@@ -15,12 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-//TODO: Change the class name to start with a capital letter
-public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.donutHolder> {
+//TODO: Write Comments for this class
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.DonutHolder> {
     private ArrayList<Donut> donutList;
     private OrderDonuts od;
 
-    public recyclerAdapter(ArrayList<Donut> x, OrderDonuts main)
+    public RecyclerAdapter(ArrayList<Donut> x, OrderDonuts main)
     {
         donutList = x;
         od = main;
@@ -28,16 +28,16 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.donutH
 
     @NonNull
     @Override
-    public donutHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public DonutHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View donutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_items,
                 parent,false);
-        return new donutHolder(donutView);
+        return new DonutHolder(donutView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull donutHolder holder, int position) {
+    public void onBindViewHolder(@NonNull DonutHolder holder, int position) {
         String name = donutList.get(position).getFlavor() + donutList.get(position).getType();
-        String price = "$" + donutList.get(position).getPrice();
+        String price = "$" + donutList.get(position).itemPrice();
         holder.name.setText(name);
         holder.price.setText(price);
     }
@@ -59,13 +59,13 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.donutH
         return donutList.size();
     }
 
-    public class donutHolder extends RecyclerView.ViewHolder {
+    public class DonutHolder extends RecyclerView.ViewHolder {
         private TextView name, price;
         //private ImageView im_item;
         private Button button;
         private ConstraintLayout parentLayout; //this is the row layout
 
-        public donutHolder(@NonNull View itemView) {
+        public DonutHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
             price = itemView.findViewById(R.id.price);

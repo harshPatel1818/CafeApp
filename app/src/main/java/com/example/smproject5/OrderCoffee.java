@@ -20,6 +20,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 
+//TODO: We need to break up that onViewCreated function. We'll get points off if it's more than 40 lines long.
 /**
  * Controls all the functions of the Coffee ordering window.
  * @author Aaron Browne, Harshkumar Patel

@@ -1,7 +1,13 @@
 package com.example.smproject5;
 
-public class MenuItem
-{
+import java.io.Serializable;
+
+/**
+ * Parent class for all menu items.
+ * Contains the price variable.
+ * @author Aaron Browne
+ */
+public class MenuItem implements Serializable {
     protected double price;
     protected int quantity;
 
@@ -13,17 +19,13 @@ public class MenuItem
         return price * quantity;
     }
 
-    //TODO: Get rid of this function if we don't use it
-    public String unitPrice()
-    {
-        return ""+price;
-    }
-
     /**
      * Returns the amount of this kind of coffee.
      * @return the amount of this kind of coffee.
      */
-    public int getQuantity() { return quantity; }
+    public int getQuantity() {
+        return quantity;
+    }
 
     /**
      * Returns a string representation of the item.

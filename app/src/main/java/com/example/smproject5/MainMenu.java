@@ -2,7 +2,6 @@ package com.example.smproject5;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +20,13 @@ public class MainMenu extends Fragment {
 
     private MainLayoutBinding binding;
 
+    /**
+     * Sets up the binding.
+     * @param inflater The inflater.
+     * @param container The container.
+     * @param savedInstanceState The saved instance state.
+     * @return The binding root.
+     */
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -32,6 +38,11 @@ public class MainMenu extends Fragment {
 
     }
 
+    /**
+     * Sets up the listeners for the buttons.
+     * @param view The view.
+     * @param savedInstanceState The saved instance state.
+     */
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -69,6 +80,9 @@ public class MainMenu extends Fragment {
         });
     }
 
+    /**
+     * Cleans up the binding after the window is cold.
+     */
     @Override
     public void onDestroyView() {
         super.onDestroyView();

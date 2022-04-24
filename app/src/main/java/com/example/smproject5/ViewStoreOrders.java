@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 
+//TODO: Write comments for this class
 public class ViewStoreOrders extends AppCompatActivity {
     RecyclerView list;
     StoreOrders orders;
@@ -19,6 +20,7 @@ public class ViewStoreOrders extends AppCompatActivity {
         list = findViewById(R.id.ordersView);
         Intent intent = getIntent();
         orders = (StoreOrders) intent.getSerializableExtra("orders");
+        setAdapter();
     }
 
     private void setAdapter() {

@@ -6,6 +6,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+//TODO: Delete this file if we don't use it. If we do use it, comment it.
 public class DonutSelectedActivity extends AppCompatActivity
 {
     private Button button;

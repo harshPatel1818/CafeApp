@@ -1,5 +1,6 @@
 package com.example.smproject5;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  * Stores the list of items and the price.
  * @author Aaron Browne, Harshkumar Patel
  */
-public class Order implements Customizable{
+public class Order implements Customizable, Serializable {
 	private double TAX_RATE = 0.06625;
 	private ArrayList<MenuItem> items;
 
@@ -30,7 +31,7 @@ public class Order implements Customizable{
 	public boolean add(Object obj) {
 		MenuItem mi = (MenuItem) obj;
 		items.add(mi);
-		changePrice(mi.itemPrice());
+		updatePrice();
 		return true;
 	}
 
@@ -41,20 +42,22 @@ public class Order implements Customizable{
 		String toBeRemoved = (String) obj;
 		for(MenuItem item : items) {
 			if(item.toString().equals(toBeRemoved)) {
-				changePrice(item.itemPrice() * -1);
 				items.remove(item);
 				break;
 			}
 		}
+		updatePrice();
 		return false;
 	}
 
 	/**
-	 * Adds an amount of money to the sub-total and updates the tax and total.
-	 * @param amount The amount to add (negative number to remove)
+	 * Updates the price of the order.
 	 */
-	public void changePrice(double amount) {
-		price += amount;
+	public void updatePrice() {
+		price = 0;
+		for(MenuItem i : items) {
+			price += i.itemPrice();
+		}
 		tax = price * TAX_RATE;
 		total = price + tax;
 	}
@@ -91,6 +94,11 @@ public class Order implements Customizable{
 		return total;
 	}
 
+	/**
+	 * Returns a string representation of the Order.
+	 * @param number The order number.
+	 * @return A string representation of the Order.
+	 */
 	public String toString(int number) {
 		DecimalFormat df = new DecimalFormat("###,##0.00");
 		String result = "Order #" + number + ":\n";
@@ -102,6 +110,4 @@ public class Order implements Customizable{
 		result += "Total: $" + df.format(total) + "\n";
 		return result;
 	}
-
-	//TODO: create a toString function that includes the pries as well
 }
