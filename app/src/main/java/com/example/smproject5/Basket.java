@@ -1,13 +1,17 @@
 package com.example.smproject5;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.example.smproject5.databinding.BasketLayoutBinding;
@@ -16,7 +20,7 @@ import java.text.DecimalFormat;
 
 //TODO: Write comments for this class
 //TODO: Be able to delete an item from the order
-//TODO: Display error message when adding empty order
+
 public class Basket extends Fragment {
 
     private BasketLayoutBinding binding;
@@ -40,9 +44,47 @@ public class Basket extends Fragment {
         binding.placeOrderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                placeOrder();
+                if(ma.getList().isEmpty()){
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+                    alertDialogBuilder.setCancelable(true);
+                    alertDialogBuilder.setTitle("Error!");
+                    alertDialogBuilder.setMessage("Cannot place an empty order");
+
+                    alertDialogBuilder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.cancel();
+                        }
+                    });
+
+                    alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.cancel();
+                        }
+                    });
+                    alertDialogBuilder.show();
+
+                }else {
+                    placeOrder();
+                }
             }
         });
+      /*
+       binding.orderList.setOnLongClickListener(new AdapterView.OnItemLongClickListener(){
+
+           @Override
+           public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+               removeItem(i);
+               return false;
+           }
+       });
+       */
+    }
+
+    private void removeItem(int i) {
+        ma.getList().remove(i);
+        populateList();
     }
 
     private void populateList() {
@@ -62,6 +104,7 @@ public class Basket extends Fragment {
         ma.placeOrder();
         populateList();
     }
+
 
     @Override
     public void onDestroyView() {
