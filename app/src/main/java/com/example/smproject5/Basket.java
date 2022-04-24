@@ -19,7 +19,6 @@ import com.example.smproject5.databinding.BasketLayoutBinding;
 import java.text.DecimalFormat;
 
 //TODO: Write comments for this class
-//TODO: Be able to delete an item from the order
 
 public class Basket extends Fragment {
 
