@@ -1,5 +1,6 @@
 package com.example.smproject5;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
@@ -89,4 +90,18 @@ public class Order implements Customizable{
 	public double getTotal() {
 		return total;
 	}
+
+	public String toString(int number) {
+		DecimalFormat df = new DecimalFormat("###,##0.00");
+		String result = "Order #" + number + ":\n";
+		for(MenuItem i : items) {
+			result += i.toString() + " $" + df.format(i.itemPrice()) + "\n";
+		}
+		result += "Subtotal: $" + df.format(price) + "\n";
+		result += "Tax: $" + df.format(tax) + "\n";
+		result += "Total: $" + df.format(total) + "\n";
+		return result;
+	}
+
+	//TODO: create a toString function that includes the pries as well
 }

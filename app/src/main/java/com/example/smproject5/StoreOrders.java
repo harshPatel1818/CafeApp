@@ -1,12 +1,13 @@
 package com.example.smproject5;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Stores all the orders previously made.
  * @author Aaron Browne, Harshkumar Patel
  */
-public class StoreOrders implements Customizable {
+public class StoreOrders implements Customizable, Serializable {
 	private ArrayList<Order> orders;
 
 	/**

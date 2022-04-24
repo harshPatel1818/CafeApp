@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+//TODO: Change the class name to start with a capital letter
 public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.donutHolder> {
     private ArrayList<Donut> donutList;
     private OrderDonuts od;
@@ -35,7 +36,7 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.donutH
 
     @Override
     public void onBindViewHolder(@NonNull donutHolder holder, int position) {
-        String name = donutList.get(position).getFlavor()+donutList.get(position).getType();
+        String name = donutList.get(position).getFlavor() + donutList.get(position).getType();
         String price = "$" + donutList.get(position).getPrice();
         holder.name.setText(name);
         holder.price.setText(price);

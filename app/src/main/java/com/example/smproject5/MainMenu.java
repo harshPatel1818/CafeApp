@@ -2,6 +2,7 @@ package com.example.smproject5;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,6 +63,7 @@ public class MainMenu extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), ViewStoreOrders.class);
+                intent.putExtra("orders", ((MainActivity) getActivity()).storeOrders);
                 startActivity(intent);
             }
         });
