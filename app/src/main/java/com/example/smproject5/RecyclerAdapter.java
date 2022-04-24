@@ -97,25 +97,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.DonutH
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    AlertDialog.Builder alert = new AlertDialog.Builder(itemView.getContext());
-                    alert.setTitle("Add to order");
-                    alert.setMessage(name.getText().toString());
-                    //handle the "YES" click
-                    alert.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            addDonut(name.getText().toString());
-                            Toast.makeText(itemView.getContext(),
-                                    name.getText().toString() + " added.", Toast.LENGTH_LONG).show();
-                        }
-                        //handle the "NO" click
-                    }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            Toast.makeText(itemView.getContext(),
-                                    name.getText().toString() + " not added.", Toast.LENGTH_LONG).show();
-                        }
-                    });
-                    AlertDialog dialog = alert.create();
-                    dialog.show();
+                    addDonut(name.getText().toString());
+                    Toast.makeText(itemView.getContext(),
+                            name.getText().toString() + " added.", Toast.LENGTH_SHORT).show();
                 }
             });
         }
