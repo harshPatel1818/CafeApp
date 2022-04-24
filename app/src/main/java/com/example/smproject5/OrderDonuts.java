@@ -16,7 +16,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smproject5.databinding.DonutLayoutBinding;
 
-
+/**
+ * Controls all the functions of the Donut ordering window.
+ * @author Aaron Browne, Harshkumar Patel
+ */
 public class OrderDonuts extends Fragment {
     private ArrayList<Donut> donutList;
     private RecyclerView recyclerView;
