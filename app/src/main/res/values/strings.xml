@@ -9,6 +9,11 @@
     <string name="empty_order_warning">Order Cannot Be Empty!</string>
     <string name="order_success">Successfully Placed Order!</string>
 
+    <string name="remove_item">Remove Item</string>
+    <string name="remove_from_order">Are you sure you want to remove this?</string>
+    <string name="remove_success">Item successfully removed!</string>
+    <string name="not_removed">Item not removed</string>
+
     <string name="place">Place this Order</string>
 
     <string name="coffee_fragment_label">Order Coffee</string>

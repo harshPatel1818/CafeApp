@@ -36,16 +36,11 @@ public class Order implements Customizable, Serializable {
 	}
 
 	/**
-	 * Removes an item from the order.
+	 * Removes an item from the order when given it's index.
 	 */
 	public boolean remove(Object obj) {
-		String toBeRemoved = (String) obj;
-		for(MenuItem item : items) {
-			if(item.toString().equals(toBeRemoved)) {
-				items.remove(item);
-				break;
-			}
-		}
+		int toBeRemoved = (int) obj;
+		items.remove(toBeRemoved);
 		updatePrice();
 		return false;
 	}

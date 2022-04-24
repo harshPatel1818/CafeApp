@@ -3,7 +3,6 @@ package com.example.smproject5;
 import java.util.HashSet;
 import java.util.Set;
 
-//TODO: Fix weird price error
 /**
  * Contains information about a single coffee.
  * stores the size and toppings of the coffee.
@@ -78,7 +77,7 @@ public class Coffee extends MenuItem implements Customizable {
 		double newPrice = DEFAULT_COST;
 		newPrice += (size - SHORT) * INCREASE_PER_SIZE;
 		newPrice += addons.size() * INCREASE_PER_ADDON;
-		price = newPrice * quantity;
+		price = newPrice;
 	}
 
 	/**

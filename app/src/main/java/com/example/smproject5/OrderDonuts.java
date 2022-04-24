@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.smproject5.databinding.DonutLayoutBinding;
 
 //TODO: Write comments for this class
+//TODO: We need three more donut flavors
 public class OrderDonuts extends Fragment {
     private ArrayList<Donut> donutList;
     private RecyclerView recyclerView;

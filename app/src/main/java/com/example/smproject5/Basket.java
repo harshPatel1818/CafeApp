@@ -70,20 +70,45 @@ public class Basket extends Fragment {
                 }
             }
         });
-      /*
-       binding.orderList.setOnLongClickListener(new AdapterView.OnItemLongClickListener(){
+
+        /*
+       binding.orderList.setOnLongClickListener(new AdapterView.OnLongClickListener(){
 
            @Override
            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                removeItem(i);
                return false;
            }
-       });
-       */
+       }); */
+// Create a message handling object as an anonymous class.
+        AdapterView.OnItemClickListener messageClickedHandler = new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView parent, View v, int position, long id) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+                alert.setTitle(R.string.remove_item);
+                alert.setMessage(R.string.remove_from_order);
+                //handle the "YES" click
+                alert.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        removeItem(position);
+                        Toast.makeText(getContext(), R.string.remove_success,
+                                Toast.LENGTH_LONG).show();
+                    }
+                    //handle the "NO" click
+                }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getContext(), R.string.not_removed, Toast.LENGTH_LONG).show();
+                    }
+                });
+                AlertDialog dialog = alert.create();
+                dialog.show();
+            }
+        };
+
+        binding.orderList.setOnItemClickListener(messageClickedHandler);
     }
 
     private void removeItem(int i) {
-        ma.getList().remove(i);
+        ma.getOrder().remove(i);
         populateList();
     }
 

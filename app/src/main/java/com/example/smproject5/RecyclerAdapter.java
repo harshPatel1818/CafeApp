@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 //TODO: Write Comments for this class
+//TODO: We should have separate images for each donut
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.DonutHolder> {
     private ArrayList<Donut> donutList;
     private OrderDonuts od;
