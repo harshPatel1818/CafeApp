@@ -46,18 +46,10 @@ public class Basket extends Fragment {
                 if(ma.getList().isEmpty()){
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
                     alertDialogBuilder.setCancelable(true);
-                    alertDialogBuilder.setTitle("Error!");
-                    alertDialogBuilder.setMessage("Cannot place an empty order");
+                    alertDialogBuilder.setTitle(R.string.error);
+                    alertDialogBuilder.setMessage(R.string.empty_order);
 
-                    alertDialogBuilder.setNegativeButton("CANCEL",
-                            new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.cancel();
-                        }
-                    });
-
-                    alertDialogBuilder.setPositiveButton("OK",
+                    alertDialogBuilder.setPositiveButton(R.string.ok,
                             new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -66,7 +58,7 @@ public class Basket extends Fragment {
                     });
                     alertDialogBuilder.show();
 
-                }else {
+                } else {
                     placeOrder();
                 }
             }

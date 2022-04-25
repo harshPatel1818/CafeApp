@@ -66,6 +66,7 @@
         android:backgroundTint="#6C6C6C"
         android:ems="10"
         android:inputType="none"
+        android:focusable="false"
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
