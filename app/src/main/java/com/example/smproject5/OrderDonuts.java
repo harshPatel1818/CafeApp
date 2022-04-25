@@ -24,7 +24,7 @@ public class OrderDonuts extends Fragment {
     private ArrayList<Donut> donutList;
     private RecyclerView recyclerView;
     private DonutLayoutBinding binding;
-    private int[] itemImages = {R.drawable.donut,R.drawable.chocolate,R.drawable.glazed, R.drawable.strawberry};
+    private int[] donutImages = {R.drawable.donut,R.drawable.chocolate,R.drawable.glazed, R.drawable.strawberry,R.drawable.bostonc};
     /**
      * Sets up the layout binding object.
      * @param inflater  The inflater.
@@ -72,18 +72,18 @@ public class OrderDonuts extends Fragment {
      */
     private void setDonut()
     {
-        donutList.add(new Donut("Cake Donut","Glazed ",1));
-        donutList.add(new Donut("Donut Hole","Glazed ",1));
-        donutList.add(new Donut("Yeast Donut","Glazed ",1));
-        donutList.add(new Donut("Yeast Donut","Boston Cream ",1));
-        donutList.add(new Donut("Cake Donut","Sprinkled ",1));
-        donutList.add(new Donut("Cake Donut","Boston Cream ",1));
-        donutList.add(new Donut("Yeast Donut","Sprinkled ",1));
-        donutList.add(new Donut("Cake Donut","Chocolate ",1));
-        donutList.add(new Donut("Donut Hole","Sprinkled ",1));
-        donutList.add(new Donut("Yeast Donut","Chocolate ",1));
-        donutList.add(new Donut("Donut Hole","Strawberry ",1));
-        donutList.add(new Donut("Donut Hole","Chocolate ",1));
+        donutList.add(new Donut("Cake Donut","Glazed ",1,donutImages[2]));
+        donutList.add(new Donut("Donut Hole","Glazed ",1,donutImages[2]));
+        donutList.add(new Donut("Yeast Donut","Glazed ",1,donutImages[2]));
+        donutList.add(new Donut("Yeast Donut","Boston Cream ",1,donutImages[4]));
+        donutList.add(new Donut("Cake Donut","Sprinkled ",1,donutImages[0]));
+        donutList.add(new Donut("Cake Donut","Boston Cream ",1,donutImages[4]));
+        donutList.add(new Donut("Yeast Donut","Sprinkled ",1,donutImages[0]));
+        donutList.add(new Donut("Cake Donut","Chocolate ",1,donutImages[1]));
+        donutList.add(new Donut("Donut Hole","Sprinkled ",1,donutImages[0]));
+        donutList.add(new Donut("Yeast Donut","Chocolate ",1,donutImages[1]));
+        donutList.add(new Donut("Donut Hole","Strawberry ",1,donutImages[3]));
+        donutList.add(new Donut("Donut Hole","Chocolate ",1,donutImages[1]));
     }
 
     /**

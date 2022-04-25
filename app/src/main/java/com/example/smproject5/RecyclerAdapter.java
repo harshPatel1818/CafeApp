@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -65,6 +66,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.DonutH
         String price = "$" + donutList.get(position).itemPrice();
         holder.name.setText(name);
         holder.price.setText(price);
+        holder.imageView2.setImageResource(donutList.get(position).getImage());
     }
 
     /**
@@ -98,7 +100,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.DonutH
      */
     public class DonutHolder extends RecyclerView.ViewHolder {
         private TextView name, price;
-        //private ImageView im_item;
+        private ImageView imageView2;
         private Button button;
         private ConstraintLayout parentLayout; //this is the row layout
 
@@ -111,6 +113,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.DonutH
             name = itemView.findViewById(R.id.name);
             price = itemView.findViewById(R.id.price);
             button = itemView.findViewById(R.id.addButton);
+            imageView2 = itemView.findViewById(R.id.imageView2);
             parentLayout = itemView.findViewById(R.id.rowLayout);
             setAddButtonOnClick(itemView); //register the onClicklistener for the button on each row.
         }
