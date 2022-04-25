@@ -40,7 +40,7 @@ public class StoreOrdersRecyclerAdapter extends RecyclerView.Adapter<StoreOrders
     @NonNull
     @Override
     public StoreOrdersRecyclerAdapter.OrderHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View ordersView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_items,
+        View ordersView = LayoutInflater.from(parent.getContext()).inflate(R.layout.store_orders,
                 parent,false);
         return new OrderHolder(ordersView);
     }
@@ -53,6 +53,7 @@ public class StoreOrdersRecyclerAdapter extends RecyclerView.Adapter<StoreOrders
     @Override
     public void onBindViewHolder(@NonNull StoreOrdersRecyclerAdapter.OrderHolder holder, int position) {
         String orderString = orderList.get(position).toString(position);
+        holder.orderNum.setText("order#"+position);
         holder.string.setText(orderString);
     }
 

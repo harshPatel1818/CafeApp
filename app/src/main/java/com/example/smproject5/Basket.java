@@ -69,16 +69,6 @@ public class Basket extends Fragment {
                 }
             }
         });
-
-        /*
-       binding.orderList.setOnLongClickListener(new AdapterView.OnLongClickListener(){
-
-           @Override
-           public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-               removeItem(i);
-               return false;
-           }
-       }); */
 // Create a message handling object as an anonymous class.
         AdapterView.OnItemClickListener messageClickedHandler = new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView parent, View v, int position, long id) {

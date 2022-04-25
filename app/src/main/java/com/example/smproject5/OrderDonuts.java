@@ -24,7 +24,7 @@ public class OrderDonuts extends Fragment {
     private ArrayList<Donut> donutList;
     private RecyclerView recyclerView;
     private DonutLayoutBinding binding;
-
+    private int [] itemImages = {R.drawable.donut,R.drawable.chocolate,R.drawable.glazed, R.drawable.strawberry};
     /**
      * Sets up the layout binding object.
      * @param inflater  The inflater.
