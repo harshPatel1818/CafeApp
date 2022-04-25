@@ -20,6 +20,26 @@ public class Donut extends MenuItem
      * @param f The flavor
      * @param q The quantity
      */
+    public Donut(String t, String f, int q) {
+        this.type = t;
+        this.quantity = q;
+        this.flavor = f;
+        if(type.equals("Yeast Donut")) {
+            price = YEAST_DONUT_PRICE;
+        } else if(type.equals("Cake Donut")) {
+            price = CAKE_DONUT_PRICE;
+        } else {
+            price = DONUT_HOLE_PRICE;
+        }
+    }
+
+    /**
+     * Creates a donut with the values given and an image int.
+     * @param t Donut Type
+     * @param f The flavor
+     * @param q The quantity
+     * @param m The image
+     */
     public Donut(String t, String f, int q, int m) {
         this.type = t;
         this.quantity = q;
