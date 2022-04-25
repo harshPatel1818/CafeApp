@@ -11,6 +11,7 @@ import android.os.Bundle;
 //TODO: Write comments for this class
 //TODO: Assign a icon for the app
 //TODO: make sure there are no hardcode text errors in xml files
+//TODO: make sure spinner is used
 public class ViewStoreOrders extends AppCompatActivity {
     RecyclerView list;
     StoreOrders orders;
