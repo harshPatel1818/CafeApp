@@ -15,7 +15,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/store_orders"
+            android:label="@string/rutgers_cafe"
             android:theme="@style/Theme.SmProject5.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
