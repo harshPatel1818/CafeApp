@@ -96,6 +96,10 @@ public class Donut extends MenuItem
         return output;
     }
 
+    /**
+     * Returns the image int.
+     * @return The image int.
+     */
     public int getImage()
     {
         return this.image;
