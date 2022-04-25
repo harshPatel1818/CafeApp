@@ -96,7 +96,7 @@ public class Order implements Customizable, Serializable {
 	 */
 	public String toString(int number) {
 		DecimalFormat df = new DecimalFormat("###,##0.00");
-		String result = "Order #" + number + ":\n";
+		String result = "Order #" + (number + 1) + ":\n";
 		for(MenuItem i : items) {
 			result += i.toString() + " $" + df.format(i.itemPrice()) + "\n";
 		}

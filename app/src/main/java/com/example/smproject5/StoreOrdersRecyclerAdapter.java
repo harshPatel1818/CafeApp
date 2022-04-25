@@ -5,13 +5,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-//TODO: Create a separate xml file for this recyclerView's list items
 //TODO: Let the user remove an order by pressing an order
 /**
  * This class is the recycler adapter for the store orders recycler view.
@@ -40,7 +40,7 @@ public class StoreOrdersRecyclerAdapter extends RecyclerView.Adapter<StoreOrders
     @NonNull
     @Override
     public StoreOrdersRecyclerAdapter.OrderHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View ordersView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_items,
+        View ordersView = LayoutInflater.from(parent.getContext()).inflate(R.layout.order_list_item,
                 parent,false);
         return new OrderHolder(ordersView);
     }
@@ -79,8 +79,31 @@ public class StoreOrdersRecyclerAdapter extends RecyclerView.Adapter<StoreOrders
         public OrderHolder(@NonNull View itemView) {
             super(itemView);
 
-            string = itemView.findViewById(R.id.name);
-            button = itemView.findViewById(R.id.addButton);
+            string = itemView.findViewById(R.id.orderText);
+            button = itemView.findViewById(R.id.removeOrderButton);
+            setRemoveButtonOnClick(itemView); //register the onClicklistener for the button on each row.
+        }
+
+        /* set onClickListener for the row layout,
+         * clicking on a row will navigate to another Activity
+         *
+        parentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(itemView.getContext(), ItemSelectedActivity.class);
+                intent.putExtra("ITEM", name.getText());
+                itemView.getContext().startActivity(intent);
+            }
+        }); */
+        private void setRemoveButtonOnClick(View itemView) {
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(itemView.getContext(),
+                            "this order would be removed if I wrote the dang code already", Toast.LENGTH_LONG).show();
+                }
+            });
         }
     }
+
 }

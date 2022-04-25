@@ -77,7 +77,54 @@ public class OrderCoffee extends Fragment {
                 android.R.layout.simple_spinner_item, numbers);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.quantityBox.setAdapter(ad);
+        checkBoxListeners();
+        buttonAndBoxListeners();
+    }
 
+    /**
+     * Handles when the size or quantity is changed and when the submit button is pressed.
+     */
+    private void buttonAndBoxListeners() {
+        binding.submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity mm = (MainActivity) getActivity();
+                mm.addCoffee(coffee);
+                refreshCoffee();
+                Toast.makeText(getContext(), R.string.add_success,
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+
+        binding.sizeBox.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int pos, long id) {
+                sizeChange((String) parent.getItemAtPosition(pos));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        binding.quantityBox.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int pos, long id) {
+                quantityChanged((int) parent.getItemAtPosition(pos));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+    }
+
+    /**
+     * Listens for when the checkboxes are clicked.
+     */
+    private void checkBoxListeners() {
         binding.creamButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,40 +159,21 @@ public class OrderCoffee extends Fragment {
                 boxChecked(Topping.WHIPPED_CREAM, ((CheckBox) view).isChecked());
             }
         });
+    }
 
-        binding.submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MainActivity mm = (MainActivity) getActivity();
-                mm.addCoffee(coffee);
-                Toast.makeText(getContext(), R.string.add_success,
-                        Toast.LENGTH_LONG).show();
-            }
-        });
-
-        binding.sizeBox.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int pos, long id) {
-                sizeChange((String) parent.getItemAtPosition(pos));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-
-        binding.quantityBox.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int pos, long id) {
-                quantityChanged((int) parent.getItemAtPosition(pos));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
+    /**
+     * Sets the values of the current coffee object based on which options the user had already
+     * selected.
+     */
+    private void refreshCoffee() {
+        coffee = new Coffee();
+        quantityChanged((int) binding.quantityBox.getSelectedItem());
+        sizeChange((String) binding.sizeBox.getSelectedItem());
+        boxChecked(Topping.CREAM, binding.creamButton.isChecked());
+        boxChecked(Topping.MILK, binding.milkButton.isChecked());
+        boxChecked(Topping.CARAMEL, binding.caramelButton.isChecked());
+        boxChecked(Topping.SYRUP, binding.syrupButton.isChecked());
+        boxChecked(Topping.WHIPPED_CREAM, binding.whippedButton.isChecked());
     }
 
     /**

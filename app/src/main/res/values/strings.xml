@@ -4,6 +4,7 @@
     <!-- Strings used for fragments for navigation -->
 
     <string name="add_to_order">Add to Order</string>
+    <string name="remove">Remove</string>
 
     <string name="add_success">Item(s) Successfully Added to your Order!</string>
     <string name="empty_order_warning">Order Cannot Be Empty!</string>
