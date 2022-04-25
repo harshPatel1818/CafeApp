@@ -10,7 +10,6 @@ import android.os.Bundle;
 
 //TODO: Write comments for this class
 //TODO: Assign a icon for the app
-//TODO: make sure there are no hardcode text errors in xml files
 public class ViewStoreOrders extends AppCompatActivity {
     RecyclerView list;
     StoreOrders orders;
@@ -31,5 +30,10 @@ public class ViewStoreOrders extends AppCompatActivity {
         list.setLayoutManager(layoutManager);
         list.setItemAnimator(new DefaultItemAnimator());
         list.setAdapter(adapter);
+    }
+
+    public void removeOrder(int i) {
+        orders.remove(i);
+        setAdapter();
     }
 }

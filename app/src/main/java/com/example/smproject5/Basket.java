@@ -49,14 +49,16 @@ public class Basket extends Fragment {
                     alertDialogBuilder.setTitle("Error!");
                     alertDialogBuilder.setMessage("Cannot place an empty order");
 
-                    alertDialogBuilder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    alertDialogBuilder.setNegativeButton("CANCEL",
+                            new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             dialogInterface.cancel();
                         }
                     });
 
-                    alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    alertDialogBuilder.setPositiveButton("OK",
+                            new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             dialogInterface.cancel();
@@ -76,14 +78,14 @@ public class Basket extends Fragment {
                 alert.setTitle(R.string.remove_item);
                 alert.setMessage(R.string.remove_from_order);
                 //handle the "YES" click
-                alert.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                alert.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         removeItem(position);
                         Toast.makeText(getContext(), R.string.remove_success,
                                 Toast.LENGTH_LONG).show();
                     }
                     //handle the "NO" click
-                }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                }).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         Toast.makeText(getContext(), R.string.not_removed, Toast.LENGTH_LONG).show();
                     }
@@ -107,7 +109,7 @@ public class Basket extends Fragment {
         ListView listView = binding.orderList;
         listView.setAdapter(adapter);
 
-        DecimalFormat df = new DecimalFormat("$ ###,##0.00");
+        DecimalFormat df = new DecimalFormat("$###,##0.00");
         Order o = ma.getOrder();
         binding.subtotal.setText(df.format(o.orderPrice()));
         binding.tax.setText(df.format(o.getTax()));
@@ -117,6 +119,7 @@ public class Basket extends Fragment {
     private void placeOrder() {
         ma.placeOrder();
         populateList();
+        Toast.makeText(getContext(), R.string.order_success, Toast.LENGTH_LONG).show();
     }
 
 

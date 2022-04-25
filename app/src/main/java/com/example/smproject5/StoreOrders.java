@@ -30,7 +30,7 @@ public class StoreOrders implements Customizable, Serializable {
 	 * Removes an order from the database.
 	 */
 	public boolean remove(Object order) {
-		Order ord = (Order) order;
+		int ord = (int) order;
 		orders.remove(ord);
 		return false;
 	}

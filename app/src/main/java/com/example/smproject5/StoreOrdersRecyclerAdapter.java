@@ -1,5 +1,6 @@
 package com.example.smproject5;
 
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,11 +9,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-//TODO: Let the user remove an order by pressing an order
 /**
  * This class is the recycler adapter for the store orders recycler view.
  * @author Aaron Browne
@@ -39,7 +40,8 @@ public class StoreOrdersRecyclerAdapter extends RecyclerView.Adapter<StoreOrders
      */
     @NonNull
     @Override
-    public StoreOrdersRecyclerAdapter.OrderHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public StoreOrdersRecyclerAdapter.OrderHolder onCreateViewHolder(@NonNull ViewGroup parent,
+                                                                     int viewType) {
         View ordersView = LayoutInflater.from(parent.getContext()).inflate(R.layout.order_list_item,
                 parent,false);
         return new OrderHolder(ordersView);
@@ -54,6 +56,7 @@ public class StoreOrdersRecyclerAdapter extends RecyclerView.Adapter<StoreOrders
     public void onBindViewHolder(@NonNull StoreOrdersRecyclerAdapter.OrderHolder holder, int position) {
         String orderString = orderList.get(position).toString(position);
         holder.string.setText(orderString);
+        holder.setIndex(position);
     }
 
     /**
@@ -71,6 +74,7 @@ public class StoreOrdersRecyclerAdapter extends RecyclerView.Adapter<StoreOrders
     public class OrderHolder extends RecyclerView.ViewHolder {
         private TextView string;
         private Button button;
+        private int index;
 
         /**
          * Initializes the holder values.
@@ -84,26 +88,43 @@ public class StoreOrdersRecyclerAdapter extends RecyclerView.Adapter<StoreOrders
             setRemoveButtonOnClick(itemView); //register the onClicklistener for the button on each row.
         }
 
-        /* set onClickListener for the row layout,
-         * clicking on a row will navigate to another Activity
-         *
-        parentLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(itemView.getContext(), ItemSelectedActivity.class);
-                intent.putExtra("ITEM", name.getText());
-                itemView.getContext().startActivity(intent);
-            }
-        }); */
+        /**
+         * Sets the index of this list item for when we want to remove it.
+         * @param newIndex The index to assign.
+         */
+        public void setIndex(int newIndex) {
+            index = newIndex;
+        }
+
+        /**
+         * Removes an order when the remove button is pressed.
+         * @param itemView The view object to receive context from.
+         */
         private void setRemoveButtonOnClick(View itemView) {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(itemView.getContext(),
-                            "this order would be removed if I wrote the dang code already", Toast.LENGTH_LONG).show();
+                    AlertDialog.Builder alert = new AlertDialog.Builder(itemView.getContext());
+                    alert.setTitle(R.string.remove_item);
+                    alert.setMessage(R.string.remove_from_order);
+                    //handle the "YES" click
+                    alert.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            vso.removeOrder(index);
+                            Toast.makeText(itemView.getContext(), R.string.remove_success,
+                                    Toast.LENGTH_LONG).show();
+                        }
+                        //handle the "NO" click
+                    }).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            Toast.makeText(itemView.getContext(), R.string.not_removed,
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    });
+                    AlertDialog dialog = alert.create();
+                    dialog.show();
                 }
             });
         }
     }
-
 }

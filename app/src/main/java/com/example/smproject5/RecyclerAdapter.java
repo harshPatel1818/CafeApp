@@ -19,6 +19,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.DonutH
     private ArrayList<Donut> donutList;
     private OrderDonuts od;
 
+    private final int TYPE_WORD_ONE = 2;
+    private final int TYPE_WORD_TWO = 1;
+
     public RecyclerAdapter(ArrayList<Donut> x, OrderDonuts main)
     {
         donutList = x;
@@ -45,7 +48,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.DonutH
         String[] nameWords = donutName.split(" ");
         int n = nameWords.length;
         String flavorName = nameWords[0];
-        String typeName = nameWords[n-2] + " " + nameWords[n-1];
+        String typeName = nameWords[n-TYPE_WORD_ONE] + " " + nameWords[n-TYPE_WORD_TWO];
         for(int i = 1; i < n-2; i++) {
             flavorName += " " + nameWords[i];
         }
@@ -68,22 +71,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.DonutH
             super(itemView);
             name = itemView.findViewById(R.id.name);
             price = itemView.findViewById(R.id.price);
-            //im_item = itemView.findViewById(R.id.im_item);
             button = itemView.findViewById(R.id.addButton);
             parentLayout = itemView.findViewById(R.id.rowLayout);
             setAddButtonOnClick(itemView); //register the onClicklistener for the button on each row.
-
-            /* set onClickListener for the row layout,
-             * clicking on a row will navigate to another Activity
-             *
-            parentLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(itemView.getContext(), ItemSelectedActivity.class);
-                    intent.putExtra("ITEM", name.getText());
-                    itemView.getContext().startActivity(intent);
-                }
-            }); */
         }
 
         /**
@@ -96,8 +86,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.DonutH
                 @Override
                 public void onClick(View view) {
                     addDonut(name.getText().toString());
-                    Toast.makeText(itemView.getContext(),
-                            name.getText().toString() + " added.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(itemView.getContext(), R.string.donut_added,
+                            Toast.LENGTH_SHORT).show();
                 }
             });
         }

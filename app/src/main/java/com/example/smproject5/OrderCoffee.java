@@ -11,16 +11,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.smproject5.databinding.CoffeeLayoutBinding;
-import com.example.smproject5.databinding.MainLayoutBinding;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 
-//TODO: We need to break up that onViewCreated function. We'll get points off if it's more than 40 lines long.
 /**
  * Controls all the functions of the Coffee ordering window.
  * @author Aaron Browne, Harshkumar Patel
@@ -33,6 +29,8 @@ public class OrderCoffee extends Fragment {
     private final int TALL   = 2;
     private final int GRANDE = 3;
     private final int VENTI  = 4;
+
+    private final int MAX_QUANTITY = 5;
 
     /**
      * Sets up the layout binding object.
@@ -67,11 +65,9 @@ public class OrderCoffee extends Fragment {
         binding.sizeBox.setAdapter(adapter);
 
         ArrayList<Integer> numbers = new ArrayList<Integer>();
-        numbers.add(1);
-        numbers.add(2);
-        numbers.add(3);
-        numbers.add(4);
-        numbers.add(5);
+        for(int i = 1; i <= MAX_QUANTITY; i++) {
+            numbers.add(i);
+        }
 
         ArrayAdapter<Integer> ad = new ArrayAdapter(getContext(),
                 android.R.layout.simple_spinner_item, numbers);
@@ -222,7 +218,7 @@ public class OrderCoffee extends Fragment {
      * Updates the price in the price text box.
      */
     private void updatePrice() {
-        DecimalFormat df = new DecimalFormat("###,##0.00");
+        DecimalFormat df = new DecimalFormat("$###,##0.00");
         binding.priceText.setText(df.format(coffee.itemPrice()));
     }
 

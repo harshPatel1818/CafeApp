@@ -5,7 +5,8 @@ package com.example.smproject5;
  * @author Aaron Browne
  */
 public enum Topping {
-	CREAM("Cream"), SYRUP("Syrup"), MILK("Milk"), CARAMEL("Caramel"), WHIPPED_CREAM("Whipped Cream");
+	CREAM("Cream"), SYRUP("Syrup"), MILK("Milk"), CARAMEL("Caramel"),
+	WHIPPED_CREAM("Whipped Cream");
 
 	String string;
 
