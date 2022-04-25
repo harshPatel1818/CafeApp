@@ -18,13 +18,22 @@ import com.example.smproject5.databinding.BasketLayoutBinding;
 
 import java.text.DecimalFormat;
 
-//TODO: Write comments for this class
 
+/**Controls all the functions of the Current order window.
+ * @author Harshkumar Patel, Aaron Browne
+ */
 public class Basket extends Fragment {
 
     private BasketLayoutBinding binding;
     MainActivity ma;
 
+    /**
+     * Sets up the layout binding object.
+     * @param inflater The inflater.
+     * @param container The container.
+     * @param savedInstanceState The saved instance state.
+     * @return The root of binding.
+     */
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -36,6 +45,11 @@ public class Basket extends Fragment {
 
     }
 
+    /**
+     * Initializes the values and sets up the listeners.
+     * @param view The view.
+     * @param savedInstanceState The saved instance state.
+     */
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         populateList();
@@ -90,11 +104,18 @@ public class Basket extends Fragment {
         binding.orderList.setOnItemClickListener(messageClickedHandler);
     }
 
+    /**
+     * This method removes the donut from the current order list given the index number.
+     * @param i the index of the Donut.
+     */
     private void removeItem(int i) {
         ma.getOrder().remove(i);
         populateList();
     }
 
+    /**
+     * Initializes the items in the current order, total, tax and subtotal in the view.
+     */
     private void populateList() {
         ma = (MainActivity) getActivity();
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),R.layout.listview_template, ma.getList());
@@ -108,13 +129,18 @@ public class Basket extends Fragment {
         binding.total.setText(df.format(o.getTotal()));
     }
 
+    /**
+     * Adds the current order to the store order.
+     */
     private void placeOrder() {
         ma.placeOrder();
         populateList();
         Toast.makeText(getContext(), R.string.order_success, Toast.LENGTH_LONG).show();
     }
 
-
+    /**
+     * Closes the view.
+     */
     @Override
     public void onDestroyView() {
         super.onDestroyView();

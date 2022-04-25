@@ -13,14 +13,26 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-//TODO: Write Comments for this class
 //TODO: We should have separate images for each donut
+
+/**
+ *Controls all the functions of the recycler view for ordering donut window.
+ * @author Aaron Browne, Harshkumar Patel
+ */
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.DonutHolder> {
     private ArrayList<Donut> donutList;
     private OrderDonuts od;
 
+
     private final int TYPE_WORD_ONE = 2;
     private final int TYPE_WORD_TWO = 1;
+
+
+    /**
+     * Constructor that makes a new adapter with the given parameters.
+     * @param x Arraylist of type Donut
+     * @param main object of type OrderDonuts
+     */
 
     public RecyclerAdapter(ArrayList<Donut> x, OrderDonuts main)
     {
@@ -28,6 +40,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.DonutH
         od = main;
     }
 
+    /**
+     * Sets up the format for list items using the list_items xml file.
+     * @param parent The parent.
+     * @param viewType The view type.
+     * @return The DonutHolder object.
+     */
     @NonNull
     @Override
     public DonutHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -36,6 +54,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.DonutH
         return new DonutHolder(donutView);
     }
 
+    /**
+     * Sets the name and price of the donut in each list item.
+     * @param holder The donut holder.
+     * @param position The index of the list item in recycler view.
+     */
     @Override
     public void onBindViewHolder(@NonNull DonutHolder holder, int position) {
         String name = donutList.get(position).getFlavor() + donutList.get(position).getType();
@@ -44,6 +67,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.DonutH
         holder.price.setText(price);
     }
 
+    /**
+     * This method takes a donut name as a parameter and adds that donut the current order.
+     * @param donutName String name of the donut.
+     */
     private void addDonut(String donutName) {
         String[] nameWords = donutName.split(" ");
         int n = nameWords.length;
@@ -56,17 +83,29 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.DonutH
         od.addDonut(newDonut);
     }
 
+    /**
+     * This method returns the number of donuts in the list items.
+     * @return int number of donuts in the list.
+     */
     @Override
     public int getItemCount() {
         return donutList.size();
     }
 
+    /**
+     * Helper class that controls the add button functionality in the view.
+     * @author Harshkumar Patel
+     */
     public class DonutHolder extends RecyclerView.ViewHolder {
         private TextView name, price;
         //private ImageView im_item;
         private Button button;
         private ConstraintLayout parentLayout; //this is the row layout
 
+        /**
+         * Constructor which makes a new DonutHolder given View as a parameter.
+         * @param itemView View
+         */
         public DonutHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
@@ -78,8 +117,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.DonutH
 
         /**
          * Set the onClickListener for the button on each row.
-         * Clicking on the button will create an AlertDialog with the options of YES/NO.
-         * @param itemView
+         * Clicking on the button will create an Toast that will notify the user that the donut has been added to the order.
+         * @param itemView View
          */
         private void setAddButtonOnClick(@NonNull View itemView) {
             button.setOnClickListener(new View.OnClickListener() {
